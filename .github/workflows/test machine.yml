@@ -4,12 +4,18 @@ name: test
 
 # Controls when the workflow will run
 on:
-  workflow_call:
-  workflow_dispatch:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  push: 
+      tags: 
+        - '*'
+    
+env:
+  VERSION: "{{ github.ref }}"
+  TAG: "${{ github.ref_name }}"
+  BRANCH: "${GITHUB_REF}"
+  BUILD_NUMBER: "${{ github.run_number }}"
+  PRODUCT: $( echo "${{ github.event.repository.name }}" |  tr '[:upper:]' '[:lower:]' )
+  
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -21,5 +27,10 @@ jobs:
     steps:
 
       # Runs a single command using the runners shell
-      - name: CPU info
-        run: cat /proc/cpuinfo
+      - name: testing variables
+        run: |
+          echo $VERSION
+          echo $TAG
+          echo $BRANCH
+          echo $BUILD_NUMBER
+          echo $PRODUCT
