@@ -12,7 +12,7 @@ on:
 env:
   VERSION: "${{ github.ref }}"
   TAG: "${{ github.ref_name }}"
-  BRANCH: ${{ env.GITHUB_REF }}
+  BRANCH: ${{ GITHUB_REF }}
   BUILD_NUMBER: "${{ github.run_number }}"
   PRODUCT: $( echo "${{ github.event.repository.name }}" |  tr '[:upper:]' '[:lower:]' )
   
