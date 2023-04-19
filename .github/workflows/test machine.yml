@@ -5,8 +5,9 @@ name: test
 # Controls when the workflow will run
 on:
   push: 
-      tags: 
-        - '*'
+    branches: [main]
+    tags: 
+      - '*'
     
 env:
   VERSION: "${{ github.ref }}"
