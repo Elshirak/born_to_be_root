@@ -18,6 +18,9 @@ jobs:
       contents: write
       
     steps:
+      - name: twer
+        run: date --version
+        
       - name: Get files from repository
         uses: actions/checkout@v2
               
