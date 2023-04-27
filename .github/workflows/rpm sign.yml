@@ -47,7 +47,7 @@ jobs:
           echo "hui"
           # rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
           
-          sudo cat << EOF >> ~/.rpmmacros
+          sudo cat << EOF >> /root/.rpmmacros
           %_signature gpg
           %_gpg_path /root/.gnupg
           %_gpg_name Elbakyan-Shirak
