@@ -45,7 +45,7 @@ jobs:
           ls -la ~/.gnupg
           gpg --export --armor --output GPG-signOUT el.shirak@internet.com
           cat GPG-signOUT
-          sudo rpm --import GPG-signOUT
+          rpm --import GPG-signOUT
           echo "hui"
           # rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
           
