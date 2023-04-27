@@ -56,6 +56,9 @@ jobs:
           %__gpg /usr/bin/gpg
           EOF
           
+          export GPG_TTY=$(tty)
+          # GPG_TTY=$TTY sudo rpm --addsign
+          
           ls -la 
           rpm --addsign *.rpm
           rpm --checksig *.rpm
