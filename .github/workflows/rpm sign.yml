@@ -43,13 +43,13 @@ jobs:
           gpg --list-keys
           ls -la ~/.gnupg/private-keys-v1.d/
           ls -la ~/.gnupg
-          gpg --export --armor --output GPG-signOUT el.shirak@internet.com
+          sudo gpg --export --armor --output GPG-signOUT el.shirak@internet.com
           cat GPG-signOUT
-          rpm --import GPG-signOUT
+          sudo rpm --import GPG-signOUT
           echo "hui"
           # rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
           
-          cat << EOF >> ~/.rpmmacros
+          sudo cat << EOF >> ~/.rpmmacros
           %_signature gpg
           %_gpg_path /home/runner/.gnupg
           %_gpg_name Elbakyan-Shirak
@@ -60,7 +60,7 @@ jobs:
           # GPG_TTY=$TTY sudo rpm --addsign
           
           ls -la 
-          rpm --addsign cowsay-3.7.0-8.fc39.noarch.rpm
+          sudo rpm --addsign cowsay-3.7.0-8.fc39.noarch.rpm
           rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           
           
