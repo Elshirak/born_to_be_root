@@ -39,10 +39,8 @@ jobs:
           %echo Done
           EOF
           
-          gpg --batch --gen-key GPG-sign
-          gpg --list-keys
-          ls -la ~/.gnupg/private-keys-v1.d/
-          ls -la ~/.gnupg
+          sudo gpg --batch --gen-key GPG-sign
+          sudo gpg --list-keys
           sudo gpg --export --armor --output GPG-signOUT el.shirak@internet.com
           cat GPG-signOUT
           sudo rpm --import GPG-signOUT
@@ -51,7 +49,7 @@ jobs:
           
           sudo cat << EOF >> ~/.rpmmacros
           %_signature gpg
-          %_gpg_path /home/runner/.gnupg
+          %_gpg_path /root/.gnupg
           %_gpg_name Elbakyan-Shirak
           %__gpg /usr/bin/gpg
           EOF
