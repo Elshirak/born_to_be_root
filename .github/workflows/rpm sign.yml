@@ -43,7 +43,7 @@ jobs:
           gpg --list-keys
           ls -la ~/.gnupg/private-keys-v1.d/
           ls -la ~/.gnupg
-          gpg --export --armor | sudo rpm --import 
+          gpg --export --armor Elbakyan-Shirak | sudo rpm --import 
           # --output GPG-signOUT el.shirak@internet.com
           # cat GPG-signOUT
           # sudo rpm --import GPG-signOUT
