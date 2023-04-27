@@ -47,7 +47,7 @@ jobs:
           cat GPG-signOUT
           sudo rpm --import GPG-signOUT
           echo "hui"
-          rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+          # rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
           
           cat << EOF >> ~/.rpmmacros
           %_signature gpg
