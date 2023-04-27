@@ -47,12 +47,11 @@ jobs:
           echo "hui"
           # rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
           
-          sudo cat << EOF >> /root/.rpmmacros
-          %_signature gpg
-          %_gpg_path /root/.gnupg
-          %_gpg_name Elbakyan-Shirak
-          %__gpg /usr/bin/gpg
-          EOF
+        
+          sudo echo "%_signature gpg" >> /root/.rpmmacros
+          sudo echo "%_gpg_path /root/.gnupg" >> /root/.rpmmacros
+          sudo echo "%_gpg_name Elbakyan-Shirak" >> /root/.rpmmacros
+          sudo echo "%__gpg /usr/bin/gpg" >> /root/.rpmmacros
           
           export GPG_TTY=$(tty)
           # GPG_TTY=$TTY sudo rpm --addsign
