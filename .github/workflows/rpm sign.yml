@@ -60,8 +60,8 @@ jobs:
           # GPG_TTY=$TTY sudo rpm --addsign
           
           ls -la 
-          rpm --addsign *.rpm
-          rpm --checksig *.rpm
+          rpm --addsign cowsay-3.7.0-8.fc39.noarch.rpm
+          rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           
           
           
