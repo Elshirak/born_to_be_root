@@ -43,9 +43,10 @@ jobs:
           gpg --list-keys
           ls -la ~/.gnupg/private-keys-v1.d/
           ls -la ~/.gnupg
-          gpg --export --armor --output GPG-signOUT el.shirak@internet.com
-          cat GPG-signOUT
-          sudo rpm --import GPG-signOUT
+          gpg --export --armor | sudo rpm --import 
+          # --output GPG-signOUT el.shirak@internet.com
+          # cat GPG-signOUT
+          # sudo rpm --import GPG-signOUT
           rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
           
           cat << EOF >> ~/.rpmmacros
