@@ -62,7 +62,6 @@ jobs:
           ls -la 
           # rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           rpm  --addsign cowsay-3.7.0-8.fc39.noarch.rpm # &> gpg.log
-          cat gpg.log
           rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           
           
