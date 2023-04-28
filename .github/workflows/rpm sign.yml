@@ -46,7 +46,7 @@ jobs:
           sudo rpm --import GPG-signOUT
           # rpm -qa | grep -i gpg 
           echo "hui"
-          # rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+          rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
           cd ~ && pwd 
         
           echo "%_signature gpg" >> ~/.rpmmacros
@@ -60,7 +60,7 @@ jobs:
           pwd
           ls -la 
           # rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
-          sudo rpm --define "%_gpg_name Elbakyan-Shirak" --define "%_gpg_path ~/.gnupg" --define "%__gpg /usr/bin/gpg" --define "%_signature gpg" --addsign cowsay-3.7.0-8.fc39.noarch.rpm # &> gpg.log
+          rpm  --addsign cowsay-3.7.0-8.fc39.noarch.rpm # &> gpg.log
           cat gpg.log
           rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           
