@@ -37,6 +37,34 @@ jobs:
           Passphrase: 42*Hello_I-love-you!1337
           %commit
           %echo Done
+          EOF          
+          gpg --batch --gen-key --no-tty GPG-sign
+          gpg --list-keys
+          gpg --export --armor --output GPG-signOUT el.shirak@internet.com
+          
+          
+      - name: Sign RPM with Marketplace
+        uses: signalwire/sign-rpm-packages-action@v1.0.0
+        with:
+          gpg_file: /home/runner/work/born_to_be_root/born_to_be_root/GPG-signOUT
+          gpg_name: el.shirak@internet.com
+          target_path: /home/runner/work
+          target_folder: x86_x64
+          rpm_path: /home/runner/work/born_to_be_root/born_to_be_root/
+          
+      - name: Creat gpg sign
+        run: |
+          ls -la /home/runner/work/x86_x64
+          pwd # /home/runner/work/born_to_be_root/born_to_be_root
+          cat << EOF >> GPG-sign
+          Key-Type: RSA
+          Key-Length: 4096
+          Name-Real: Elbakyan-Shirak
+          Name-Email: el.shirak@internet.com
+          Expire-Date: 0
+          Passphrase: 42*Hello_I-love-you!1337
+          %commit
+          %echo Done
           EOF
           
           gpg --batch --gen-key --no-tty GPG-sign
