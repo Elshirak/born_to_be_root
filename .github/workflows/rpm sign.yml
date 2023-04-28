@@ -60,7 +60,7 @@ jobs:
           pwd
           ls -la 
           # rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
-          sudo rpm --addsign cowsay-3.7.0-8.fc39.noarch.rpm # &> gpg.log
+          sudo rpm --define "%_gpg_name Elbakyan-Shirak" --define "%_gpg_path ~/.gnupg" --define "%__gpg /usr/bin/gpg" --define "%_signature gpg" --addsign cowsay-3.7.0-8.fc39.noarch.rpm # &> gpg.log
           cat gpg.log
           rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           
