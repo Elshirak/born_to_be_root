@@ -59,7 +59,7 @@ jobs:
           cd /home/runner/work/born_to_be_root/born_to_be_root
           pwd
           ls -la 
-          rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
+          # rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           rpm --resign cowsay-3.7.0-8.fc39.noarch.rpm
           rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           
