@@ -54,13 +54,13 @@ jobs:
           echo "%_gpg_name Elbakyan-Shirak" >> ~/.rpmmacros
           echo "%__gpg /usr/bin/gpg" >> ~/.rpmmacros
           
-          # export GPG_TTY=$(tty)
-          GPG_TTY=$TTY # sudo rpm --addsign
+          export GPG_TTY=$(tty)
+          # sudo rpm --addsign
           cd /home/runner/work/born_to_be_root/born_to_be_root
           pwd
           ls -la 
           # rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
-          rpm --addsign cowsay-3.7.0-8.fc39.noarch.rpm # &> gpg.log
+          sudo rpm --addsign cowsay-3.7.0-8.fc39.noarch.rpm # &> gpg.log
           cat gpg.log
           rpm --checksig cowsay-3.7.0-8.fc39.noarch.rpm
           
