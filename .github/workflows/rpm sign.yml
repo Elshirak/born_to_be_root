@@ -44,10 +44,10 @@ jobs:
       - name: sign RPM 
         run: |
           gpg --list-keys
-          rpm -q gpg-pubkey
+          rpmsign -qa gpg-pubkey
           gpg --export --armor 'support@onlyoffice.com' > PUB-KEY
           rpm --import PUB-KEY
-          rpm -q gpg-pubkey
+          rpmsign -qa gpg-pubkey
           
           export GPG_TTY=$(tty)
           
