@@ -24,12 +24,12 @@ jobs:
           sudo apt install -y rpm gpg
           wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/c/cowsay-3.7.0-8.fc39.noarch.rpm
           ls -la
-          cat << EOF >> ~/.rpmmacros
-          %_signature gpg
-          %_gpg_path /home/runner/.gnupg
-          %_gpg_name Ascensio System SIA
-          %__gpg /usr/lib/gnupg
-          EOF
+          # cat << EOF >> ~/.rpmmacros
+          # %_signature gpg
+          # %_gpg_path /home/runner/.gnupg
+          # %_gpg_name Ascensio System SIA
+          # %__gpg /usr/lib/gnupg
+          # EOF
           cat ~/.rpmmacros
           which gpg
           
@@ -43,6 +43,8 @@ jobs:
       - name: sifn RPM 
         run: |
           gpg --list-keys
+          export GPG_TTY=$(tty)
+          
           rpm --define "_gpg_name Ascensio System SIA" --addsign *.rpm
           rpm --checksig *.rpm
           
