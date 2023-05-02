@@ -24,14 +24,14 @@ jobs:
           sudo apt install -y rpm gpg
           wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/c/cowsay-3.7.0-8.fc39.noarch.rpm
           ls -la
-          # cat << EOF >> ~/.rpmmacros
+          cat << EOF >> $HOME/.rpmmacros
           # %_signature gpg
           # %_gpg_path /home/runner/.gnupg
-          # %_gpg_name Ascensio System SIA
+          %_gpg_name Ascensio System SIA <support@onlyoffice.com>
           # %__gpg /usr/lib/gnupg
-          # EOF
+          EOF
           # cat ~/.rpmmacros
-          which gpg
+
           
       - name: Import GPG 
         uses: crazy-max/ghaction-import-gpg@v5
@@ -43,15 +43,15 @@ jobs:
           
       - name: sign RPM 
         run: |
-          gpg --list-keys
-          rpmsign -q gpg-pubkey
-          gpg --export --armor 'support@onlyoffice.com' > PUB-KEY
-          rpm --import PUB-KEY
-          rpmsign -q gpg-pubkey
+          # gpg --list-keys
+          # rpmsign -q gpg-pubkey
+          # gpg --export --armor 'support@onlyoffice.com' > PUB-KEY
+          # rpm --import PUB-KEY
+          # rpmsign -q gpg-pubkey
           
           export GPG_TTY=$(tty)
           
-          rpm --define "_gpg_name Ascensio System SIA" --addsign *.rpm
+          rpm --addsign *.rpm
           rpm --checksig *.rpm
           
       - name: Get variables
