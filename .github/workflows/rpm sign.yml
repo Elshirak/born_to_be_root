@@ -30,7 +30,7 @@ jobs:
           # %_gpg_name Ascensio System SIA
           # %__gpg /usr/lib/gnupg
           # EOF
-          cat ~/.rpmmacros
+          # cat ~/.rpmmacros
           which gpg
           
       - name: Import GPG 
