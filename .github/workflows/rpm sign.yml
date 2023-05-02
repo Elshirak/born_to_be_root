@@ -25,12 +25,12 @@ jobs:
           wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/c/cowsay-3.7.0-8.fc39.noarch.rpm
           ls -la
           cat << EOF >> $HOME/.rpmmacros
-          # %_signature gpg
-          # %_gpg_path /home/runner/.gnupg
+          %_signature gpg
+          %_gpg_path $HOME/.gnupg
           %_gpg_name Ascensio System SIA <support@onlyoffice.com>
-          # %__gpg /usr/lib/gnupg
+          %__gpg /usr/bin/gpg
           EOF
-          # cat ~/.rpmmacros
+          cat ~/.rpmmacros
 
           
       - name: Import GPG 
@@ -43,11 +43,8 @@ jobs:
           
       - name: sign RPM 
         run: |
-          # gpg --list-keys
-          # rpmsign -q gpg-pubkey
-          # gpg --export --armor 'support@onlyoffice.com' > PUB-KEY
-          # rpm --import PUB-KEY
-          # rpmsign -q gpg-pubkey
+          gpg --export --armor --output onlyoficce-gpgkey.pub
+          rpm --import onlyoficce-gpgkey.pub
           
           export GPG_TTY=$(tty)
           
