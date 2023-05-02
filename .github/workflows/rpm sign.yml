@@ -40,7 +40,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           
           
-      - name: sifn RPM 
+      - name: sign RPM 
         run: |
           gpg --list-keys
           export GPG_TTY=$(tty)
