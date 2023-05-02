@@ -34,7 +34,7 @@ jobs:
           
       - name: sifn RPM 
         run: |
-          rpm --checksig *.rpm
+          gpg --list-keys
           rpm --addsign *.rpm
           rpm --checksig *.rpm
           
