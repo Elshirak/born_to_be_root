@@ -22,6 +22,6 @@ jobs:
         run: |
           wget -O cowsay.deb http://ftp.debian.org/debian/pool/main/c/cowsay
           curl --verbose --user ${{ secrets.LOGIN }}:${{ secrets.PASS }} -H "Content-Type: multipart/form-data" \
-            -F "file=@./cowsay.deb" -X POST ${{ secrets.REPO_URL_4TESTING_DEB }}
+            -F "file=@./cowsay.deb" -X POST ${{ secrets.URL }}
 
           
