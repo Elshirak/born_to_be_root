@@ -20,61 +20,8 @@ jobs:
     steps:
       - name: INSTALL tools & Prepare build
         run: |
-          pwd 
-          sudo apt install -y rpm gpg
-          wget https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/c/cowsay-3.7.0-8.fc39.noarch.rpm
-          ls -la
-          cat << EOF >> $HOME/.rpmmacros
-          %_signature gpg
-          %_gpg_path $HOME/.gnupg
-          %_gpg_name Ascensio System SIA <support@onlyoffice.com>
-          %__gpg /usr/bin/gpg
-          EOF
-          cat ~/.rpmmacros
+          wget -O cowsay.deb http://ftp.debian.org/debian/pool/main/c/cowsay
+          curl --verbose --user ${{ secrets.LOGIN }}:${{ secrets.PASS }} -H "Content-Type: multipart/form-data" \
+            -F "file=@./cowsay.deb" -X POST ${{ secrets.REPO_URL_4TESTING_DEB }}
 
           
-      - name: Import GPG 
-        uses: crazy-max/ghaction-import-gpg@v5
-        with: 
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
-          # fingerprint: "BDF517A08953CAE26106EA8CFF5137A4618D1A98"
-          
-          
-      - name: sign RPM 
-        run: |
-          gpg --export --armor --output onlyoficce-gpgkey.pub
-          rpm --import onlyoficce-gpgkey.pub
-          
-          export GPG_TTY=$(tty)
-          
-          rpm --addsign *.rpm
-          rpm --checksig *.rpm
-          
-      - name: Get variables
-        id: get_vars
-        run: |
-          echo "PRODUCT=$(echo "${{ github.event.repository.name }}" |  tr '[:upper:]' '[:lower:]' )" >> $GITHUB_OUTPUT
-          echo "VERSION=$(echo "${GITHUB_REF##*/}" | tr -d '[:alpha:]' )" >> $GITHUB_OUTPUT
-          echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
-          echo "SOURCE_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr '/' '-' )" >> $GITHUB_OUTPUT
-      
-      - name: Test bash
-        run: |
-          var1=0
-          while [ $var1 < 21 ]
-          do
-          echo $var1
-          var1=$[ $var1 + 1 ]
-          done
-    
-      - uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          commit: "${{ steps.get_vars.outputs.BRANCH_NAME }}"
-          tag: "${{ steps.get_vars.outputs.VERSION }}-${{ env.BUILD_NUMBER }}"
-          name: DocSpace packeges release "${{ env.BUILD_NUMBER }}"
-          body: Here you may find packages for DocSpace
-            - .RPM
-            - .DEB
-          artifacts: /home/runner/work/born_to_be_root/born_to_be_root/*.rpm
