@@ -21,7 +21,7 @@ jobs:
       - name: INSTALL tools & Prepare build
         run: |
           wget -O cowsay.deb http://ftp.debian.org/debian/pool/main/c/cowsay
-          curl --fail --user ${{ secrets.LOGIN }}:${{ secrets.PASS }} -X POST -H "Content-Type: multipart/form-data" \
+          curl --verbose --user ${{ secrets.LOGIN }}:${{ secrets.PASS }} -X POST -H "Connection: close" -H "Content-Type: multipart/form-data" \
            --data-binary "@./cowsay.deb" ${{ secrets.URL }}
           
           # -F "file=@./cowsay.deb" -X POST ${{ secrets.URL }}
