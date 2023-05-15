@@ -22,6 +22,9 @@ jobs:
         run: |
           wget -O cowsay.deb http://ftp.debian.org/debian/pool/main/c/cowsay
           curl --verbose --user ${{ secrets.LOGIN }}:${{ secrets.PASS }} -H "Content-Type: multipart/form-data" \
-            -F "file=@./cowsay.deb" -X POST ${{ secrets.URL }}
+           --data-binary "@./cowsay.deb" ${{ secrets.URL }
+          
+          # -F "file=@./cowsay.deb" -X POST ${{ secrets.URL }}
 
+          # curl -u "admin:admin123" -H "Content-Type: multipart/form-data" --data-binary "@./test.deb" "http://localhost:8081/repository/apt-hosted/"
           
