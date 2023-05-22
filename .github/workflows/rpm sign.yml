@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: pip install rpmlint
         run: |
-          # sudo apt install -y python3-pip
+          sudo apt install -y python3-pip
           sudo apt install -y python3-rpm
           sudo apt install -y python3-rpmlint 
           rpmlint --version
