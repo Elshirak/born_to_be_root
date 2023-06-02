@@ -5,7 +5,8 @@ name: test
 # Controls when the workflow will run
 on:
   push: 
-    branches: [main]
+    branches: 
+      - release/*
     tags: 
       - '*'
     
